@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ConsoleApp7
 {
@@ -8,38 +9,108 @@ namespace ConsoleApp7
         
         static void Main(string[] args)
         {
-         
+            List<string> name = new List<string>(new string[] { $"Jacob", "Drew", "Peter" });
+            List<string> food = new List<string>(new string[] { "Cookies", "Ices Cream", "Thai" });
+            List<string> hometown = new List<string>(new string[] { "Detroit", "Roseville", "Warren" });
+            List<string> color = new List<string>(new string[] { });
 
-            string[] names = {"Jacob", "Drew", "Peter"};
-            string[] food = {"Cookies", "Ices Cream", "Thai"};
-            string[] hometown = {"Detroit", "Roseville", "Warren"};
+
+            try
+            {
+
+                for (int i = 0; i < 3; i++)
+                {
+                    Console.WriteLine("Add a new value of color for Jacob, Drew and Peter");
+                    string colors = Console.ReadLine();
+                    color.Add(colors);
+                }
 
 
+
+                bool repeat = true;
+                while (repeat)
+                {
+
+
+
+
+                    Console.WriteLine("Give me a new student name");
+                    string names = Console.ReadLine();
+                    name.Add(names);
+
+                    Console.WriteLine("Give me a new student hometown");
+                    string homeTown = Console.ReadLine();
+                    hometown.Add(homeTown);
+
+                    Console.WriteLine("Give me a new student Food");
+                    string foods = Console.ReadLine();
+                    food.Add(foods);
+
+                    Console.WriteLine("Give me a new student color");
+                    string Colors = Console.ReadLine();
+                    color.Add(Colors);
+
+                    Console.WriteLine("Would you like to add another student y/n");
+                    string input = Console.ReadLine().ToLower();
+                    if (input.ToLower() != "y")
+                    {
+                        repeat = false;
+                    }
+
+                }
+
+            }
+            catch (IndexOutOfRangeException ex)
+            {
+
+                Console.WriteLine(ex.Message);
+
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (ArgumentNullException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+
+      
+            
             bool answ = true;
             while (answ)
             {
 
              
                     
-                    Console.WriteLine("Enter a student number" + "\n" + "0 = Jacob, 1 = Drew, 2 = Peter");
+                    Console.WriteLine("Enter a student number" + "\n" + "0 = Jacob, 1 = Drew, 2 = Peter ");
 
                    
                     int input = int.Parse(Console.ReadLine());
             
                     Console.WriteLine("What would you like to learn, Favorite food or Hometown?  (Enter; food/hometown)");
-                    string answer = Console.ReadLine();
+                    string answer = Console.ReadLine().ToLower();
                 try
                 {
                     if (answer == "food")
                     {
 
-                        Console.WriteLine($"You chose {names[input]} they like to eat {food[input]}");
+                        Console.WriteLine($"You chose {name[input]} they like to eat {food[input]}");
 
 
                     }
                     else if (answer == "hometown")
                     {
-                        Console.WriteLine($" You chose {names[input]} they  are from {hometown[input]}");
+                        Console.WriteLine($" You chose {name[input]} they  are from {hometown[input]}");
 
                     }
                     else
@@ -49,42 +120,42 @@ namespace ConsoleApp7
                     }
 
                     Console.WriteLine("Would you like to learn more? y/n");
-                    string newinput = Console.ReadLine();
+                    string newinput = Console.ReadLine().ToLower();
 
-                    if (newinput == "y" || newinput == "Y" && answer == "food")
+                    if (newinput == "y" && answer == "food")
                     {
 
-                        Console.WriteLine($"{names[input]} is from {hometown[input]}");
+                        Console.WriteLine($"{name[input]} is from {hometown[input]} and there favorite color is {color[input]}");
                         Console.WriteLine("Run Again? y/n");
                         string dataValue = Console.ReadLine();
                         if (dataValue == "y" || dataValue == "Y")
                         {
 
                         }
-                        else if (dataValue == "N" || dataValue == "n")
+                        else if (dataValue == "n")
                         {
                             Console.WriteLine("Goodbye");
                             answ = false;
                         }
 
                     }
-                    else if (newinput == "y" || newinput == "Y" && answer == "hometown")
+                    else if (newinput == "y" && answer == "hometown")
                     {
-                        Console.WriteLine($"{names[input]} likes to eat {food[input]}");
+                        Console.WriteLine($"{name[input]} likes to eat {food[input]} ");
                         Console.WriteLine("Run Again? y/n");
-                        string dataValue = Console.ReadLine();
-                        if (dataValue == "y" || dataValue == "Y")
+                        string dataValue = Console.ReadLine().ToLower();
+                        if (dataValue == "y")
                         {
 
                         }
-                        else if (dataValue == "N" || dataValue == "n")
+                        else if (dataValue == "n")
                         {
                             Console.WriteLine("Goodbye");
                             answ = false;
                         }
 
                     }
-                    else if (newinput == "N" || newinput == "n")
+                    else if (newinput == "n")
                     {
                         Console.WriteLine("Goodbye");
                         answ = false;
@@ -95,10 +166,18 @@ namespace ConsoleApp7
                 catch (IndexOutOfRangeException ex)
                 {
 
-                    Console.WriteLine("Not in Range Try again");
+                    Console.WriteLine(ex.Message);
 
                 }
                 catch (FormatException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                catch(NullReferenceException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                catch(ArgumentNullException ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
